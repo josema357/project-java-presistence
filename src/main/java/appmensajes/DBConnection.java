@@ -7,20 +7,20 @@ import java.sql.SQLException;
 /**
  * Esta clase hace la conexion con la base de datos
  * */
-public class Conexion {
+public class DBConnection {
 	public Connection get_connection() {
-		Connection conexion = null;
+		Connection db_connection = null;
 		try {
-			conexion=DriverManager.getConnection(
+			db_connection=DriverManager.getConnection(
 					"jdbc:mysql://localhost:3307/app_mensajes",
 					"root",
 					"");
-			if(conexion!=null) {
+			if(db_connection!=null) {
 				System.out.println("Conexion exitosa");
 			}
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
-		return conexion;
+		return db_connection;
 	}
 }
