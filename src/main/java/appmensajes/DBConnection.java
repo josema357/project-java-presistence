@@ -5,22 +5,29 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Esta clase hace la conexion con la base de datos
+ * This class makes the connection with the database
  * */
 public class DBConnection {
-	public Connection get_connection() {
-		Connection db_connection = null;
-		try {
-			db_connection=DriverManager.getConnection(
-					"jdbc:mysql://localhost:3307/app_mensajes",
-					"root",
-					"");
-			if(db_connection!=null) {
-				System.out.println("Conexion exitosa");
+	private static Connection myConnection;
+	
+	private DBConnection() {
+		
+	}
+	/**
+	 * This method creates a singleton to avoid creating a new connection on each query
+	 * */
+	public static Connection get_connection() {
+		if(myConnection==null) {
+			try {
+				myConnection=DriverManager.getConnection(
+						"jdbc:mysql://localhost:3307/app_mensajes",
+						"root",
+						"");
+			} catch (SQLException e) {
+				System.out.println(e);
 			}
-		} catch (SQLException e) {
-			System.out.println(e);
 		}
-		return db_connection;
+		
+		return myConnection;
 	}
 }
