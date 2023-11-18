@@ -1,10 +1,19 @@
 package appmensajes;
 
-import java.util.Scanner;
+import javax.swing.SwingUtilities;
+
+import views.ViewMainMenu;
 
 public class Main {
 	public static void main (String[] args) {
-		Scanner sc=new Scanner(System.in);
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				new ViewMainMenu().setVisible(true);
+			}
+		});
+		/*Scanner sc=new Scanner(System.in);
 		int option=0;
 		do {
 			System.out.println("---------------------");
@@ -33,6 +42,6 @@ public class Main {
 			default:
 				break;
 			}
-		}while(option!=5);
+		}while(option!=5);*/
 	}
 }
