@@ -30,4 +30,18 @@ public class DBConnection {
 		
 		return myConnection;
 	}
+	/**
+	 * This function close the connection with the database
+	 * */
+	public static void close_connection() {
+		if(myConnection != null) {
+			try {
+				myConnection.close();
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				myConnection=null;
+			}
+		}
+	}
 }

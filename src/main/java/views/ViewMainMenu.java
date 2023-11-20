@@ -61,7 +61,8 @@ public class ViewMainMenu extends JFrame{
 		listButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				MessageService.listMessages(ViewMainMenu.this);
+				dispose();
 			}
 		});
 		editButton.addActionListener(new ActionListener() {
