@@ -22,7 +22,7 @@ public class ViewListMessage extends JFrame{
 	private JTable table;
 	public ViewListMessage(JFrame previousWindow, List<Message> response) {
 		//Window configuration
-		setTitle("Create message");
+		setTitle("List message");
 		setSize(514,294);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);

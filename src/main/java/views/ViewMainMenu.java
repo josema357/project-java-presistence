@@ -68,13 +68,15 @@ public class ViewMainMenu extends JFrame{
 		editButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				MessageService.editMessage(ViewMainMenu.this);
+				dispose();
 			}
 		});
 		deleteButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				MessageService.deleteMessage(ViewMainMenu.this);
+				dispose();
 			}
 		});
 	}

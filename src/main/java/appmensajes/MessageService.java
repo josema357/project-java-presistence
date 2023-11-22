@@ -5,7 +5,9 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import views.ViewCreateMessage;
+import views.ViewDeleteMessage;
 import views.ViewListMessage;
+import views.ViewRequestId;
 
 public class MessageService {
 	
@@ -18,10 +20,12 @@ public class MessageService {
 		ViewListMessage windowList = new ViewListMessage(previousWindow, response);
 		windowList.setVisible(true);
 	}
-	public static void deleteMessage() {
-		
+	public static void deleteMessage(JFrame previousWindow) {
+		ViewDeleteMessage windowDelete=new ViewDeleteMessage(previousWindow);
+		windowDelete.setVisible(true);
 	}
-	public static void editMessage() {
-		
+	public static void editMessage(JFrame previousWindow) {
+		ViewRequestId windowRequest=new ViewRequestId(previousWindow);
+		windowRequest.setVisible(true);
 	}
 }

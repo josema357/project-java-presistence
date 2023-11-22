@@ -58,10 +58,59 @@ public class MessageDAO {
 		
 		return messagesList;
 	}
+	/**
+	 * This function delete a message in the database
+	 * */
 	public static void deleteMessageDB(int id_message) {
-		
+		PreparedStatement ps = null;
+		try {
+			Connection connection = DBConnection.get_connection();
+			try {
+				String query="DELETE FROM mensajes WHERE id_mensaje=?";
+				ps=connection.prepareStatement(query);
+				ps.setInt(1, id_message);
+				int countRowsUpdated=ps.executeUpdate();
+				if(countRowsUpdated!=0) {
+					System.out.println("Successfully deleted message");
+				}else {
+					System.out.println("ID not found");
+				}
+				
+				
+			} catch (SQLException e) {
+				System.out.println(e);
+				System.out.println("Could not delete message");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		DBConnection.close_connection();
 	}
+	/**
+	 * This function update a message in the database
+	 * */
 	public static void updateMessageDB(Message message) {
-		
+		PreparedStatement ps = null;
+		try {
+			Connection connection = DBConnection.get_connection();
+			try {
+				String query="UPDATE mensajes SET "
+						+ "mensaje = ?, "
+						+ "autor_mensaje = ?, "
+						+ "fecha_mensaje = CURRENT_TIMESTAMP "
+						+ "WHERE mensajes.id_mensaje = ?";
+				ps=connection.prepareStatement(query);
+				ps.setString(1, message.getMessage());
+				ps.setString(2, message.getAuthor_message());
+				ps.setInt(3, message.getId_message());
+				ps.executeUpdate();
+				System.out.println("Message updated successfully");
+			} catch (SQLException e) {
+				System.out.println(e);
+				System.out.println("Could not update message");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }
