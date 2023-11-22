@@ -9,6 +9,9 @@ import java.sql.SQLException;
  * */
 public class DBConnection {
 	private static Connection myConnection;
+	private static String database=System.getenv("DATA_BASE");
+	private static String userName=System.getenv("USER_NAME");
+	private static String password=System.getenv("PASSWORD");
 	
 	private DBConnection() {
 		
@@ -19,10 +22,7 @@ public class DBConnection {
 	public static Connection get_connection() {
 		if(myConnection==null) {
 			try {
-				myConnection=DriverManager.getConnection(
-						"jdbc:mysql://localhost:3307/app_mensajes",
-						"root",
-						"");
+				myConnection=DriverManager.getConnection(database,userName,password);
 			} catch (SQLException e) {
 				System.out.println(e);
 			}

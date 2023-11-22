@@ -40,7 +40,7 @@ public class ViewUpdateMessage extends JFrame{
 		messageLabel.setBounds(31, 35, 65, 34);
 		desktopPane.add(messageLabel);
 		//TextArea Message
-		JTextArea messageTextArea = new JTextArea(message.getAuthor_message());
+		JTextArea messageTextArea = new JTextArea(message.getMessage());
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		messageTextArea.setBorder(border);
 		messageTextArea.setForeground(new Color(0, 0, 0));
@@ -60,7 +60,7 @@ public class ViewUpdateMessage extends JFrame{
 		authorTextField.setBounds(100, 129, 380, 34);
 		desktopPane.add(authorTextField);
 		//Create button
-		JButton btnUpdateMessage = new JButton("Create Message");
+		JButton btnUpdateMessage = new JButton("Update message");
 		btnUpdateMessage.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnUpdateMessage.setBounds(348, 189, 132, 34);
 		desktopPane.add(btnUpdateMessage);
@@ -74,12 +74,9 @@ public class ViewUpdateMessage extends JFrame{
 		btnUpdateMessage.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Creates a new Message object and set its attributes
-				Message record_message=new Message();
-				record_message.setMessage(messageTextArea.getText());
-				record_message.setAuthor_message(authorTextField.getText());
-				//Here send the message to DAO object
-				MessageDAO.createMessageDB(record_message);
+				message.setMessage(messageTextArea.getText());
+				message.setAuthor_message(authorTextField.getText());
+				MessageDAO.updateMessageDB(message);
 				previousWindow.setVisible(true);
 				dispose();
 			}

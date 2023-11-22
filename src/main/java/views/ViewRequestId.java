@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import appmensajes.Message;
 import appmensajes.MessageDAO;
 
 import javax.swing.JButton;
@@ -58,9 +59,9 @@ public class ViewRequestId extends JFrame{
 		updateButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//UPDATE AQUI continuo 
-				MessageDAO.deleteMessageDB(Integer.parseInt(idTextField.getText()));
-				previousWindow.setVisible(true);
+				Message currentMessage=MessageDAO.getMessage(Integer.parseInt(idTextField.getText()));
+				ViewUpdateMessage windowUpdate=new ViewUpdateMessage(previousWindow, currentMessage);
+				windowUpdate.setVisible(true);
 				dispose();
 			}
 		});

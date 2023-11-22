@@ -112,5 +112,34 @@ public class MessageDAO {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		DBConnection.close_connection();
+	}
+	/**
+	 * This function gets a message from the database
+	 * */
+	public static Message getMessage(int id) {
+		PreparedStatement ps=null;
+		ResultSet rs = null;
+		Message message=new Message();
+		try {
+			Connection connection = DBConnection.get_connection();
+			try {
+				String query="SELECT * FROM mensajes WHERE id_mensaje=?";
+				ps=connection.prepareStatement(query);
+				ps.setInt(1, id);
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					message.setId_message(rs.getInt("id_mensaje"));
+					message.setMessage(rs.getString("mensaje"));
+					message.setAuthor_message(rs.getString("autor_mensaje"));
+				}
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		DBConnection.close_connection();
+		return message;
 	}
 }
